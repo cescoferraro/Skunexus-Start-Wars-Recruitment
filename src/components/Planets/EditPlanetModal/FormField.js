@@ -1,16 +1,20 @@
 import { TextField } from "./TextField";
 
-export function FormField({ header, name, formik }) {
+export function FormField({ header, name, formik, children }) {
   const value = formik.values[name];
-  const type = header.find((h) => h.name === name)?.type || "string";
+  const itype = header.find((h) => h.name === name)?.type || "string";
   return (
     <TextField
       placeholder={name}
       value={value}
-      type={type}
+      type={itype}
       onChange={(e) => {
-        formik.setFieldValue(name, e.target.value);
+        let value1 = e.target.value;
+        console.log(value1);
+        formik.setFieldValue(name, value1);
       }}
-    />
+    >
+      {children}
+    </TextField>
   );
 }

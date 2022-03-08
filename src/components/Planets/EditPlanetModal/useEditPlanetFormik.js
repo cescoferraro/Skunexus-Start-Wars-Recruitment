@@ -1,7 +1,7 @@
 import { useFormik } from "formik";
 import * as Yup from "yup";
 
-export function useEditPlanetFormik(planet) {
+export function useEditPlanetFormik(planet, onClose) {
   return useFormik({
     initialValues: planet,
     validationSchema: Yup.object().shape({
@@ -14,8 +14,16 @@ export function useEditPlanetFormik(planet) {
       terrain: Yup.string().required(),
       surface_water: Yup.string().required(),
     }),
-    onSubmit: (editedPlanet) => {
-      alert(JSON.stringify(editedPlanet));
+    onSubmit: (editedPlanet, formikHelpers) => {
+      if (Math.random() > 0.5) {
+        alert(`[SUCCESS] ${JSON.stringify(editedPlanet)}`);
+        formikHelpers.resetForm();
+        onClose();
+        return;
+      }
+      alert(`[ERROR] ${JSON.stringify(editedPlanet)}`);
+      formikHelpers.resetForm();
+      onClose();
     },
   });
 }

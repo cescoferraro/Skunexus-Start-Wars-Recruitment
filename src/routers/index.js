@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import Films from "../components/Films";
 import Residents from "../components/Residents";
@@ -16,6 +16,9 @@ const queryClient = new QueryClient({
 });
 
 const Router = () => {
+  useEffect(() => {
+    window.process = { ...window.process };
+  }, []);
   return (
     <QueryClientProvider client={queryClient}>
       <BrowserRouter>

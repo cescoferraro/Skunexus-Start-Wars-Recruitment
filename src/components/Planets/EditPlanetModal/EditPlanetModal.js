@@ -2,12 +2,12 @@ import { Button, Modal, ModalBody, ModalFooter, ModalHeader } from "reactstrap";
 import PropTypes from "prop-types";
 import { FormField } from "./FormField";
 import { useEditPlanetFormik } from "./useEditPlanetFormik";
+import { TerrainField } from "./TerrainField";
 
 function EditPlanetModal({ header, onClose, planet }) {
-  const open = planet !== undefined;
-  const formik = useEditPlanetFormik(planet);
+  const formik = useEditPlanetFormik(planet, onClose);
   return (
-    <Modal isOpen={open} toggle={onClose}>
+    <Modal isOpen={planet !== undefined} toggle={onClose}>
       <>
         <ModalHeader toggle={onClose}>Edit {planet.name} Planet</ModalHeader>
         <form onSubmit={formik.handleSubmit}>
@@ -26,7 +26,7 @@ function EditPlanetModal({ header, onClose, planet }) {
             <FormField header={header} formik={formik} name={"diameter"} />
             <FormField header={header} formik={formik} name={"climate"} />
             <FormField header={header} formik={formik} name={"gravity"} />
-            <FormField header={header} formik={formik} name={"terrain"} />
+            <TerrainField formik={formik} terrain={planet.terrain} />
             <FormField header={header} formik={formik} name={"surface_water"} />
           </ModalBody>
           <ModalFooter>

@@ -8,14 +8,13 @@ import EditPlanetModal from "./EditPlanetModal/EditPlanetModal";
 import PropTypes from "prop-types";
 
 function Planets({ headers = [] }) {
-  console.log(headers);
   const [page, setPage] = useState(1);
   const [planet, setPlanet] = useState(undefined);
   const { data } = usePlanetsQuery(page, setPage);
   const changePage = changePageFN(page, setPage, data?.count / 10);
   const history = useHistory();
   const onClose = () => setPlanet(undefined);
-  let header = [
+  const header = [
     { name: "name" },
     { name: "rotation_period", type: "number" },
     { name: "orbital_period", type: "number" },
