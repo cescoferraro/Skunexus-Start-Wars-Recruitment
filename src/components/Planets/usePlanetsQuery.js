@@ -6,5 +6,6 @@ export function usePlanetsQuery(page) {
     return useQuery(['planets', page], () => fetchProjects(page), {
         keepPreviousData: true,
         refetchOnMount: false,
+        refetchOnReconnect: false, refetchInterval: 0, refetchOnWindowFocus: false, refetchIntervalInBackground: 0
     })
 }

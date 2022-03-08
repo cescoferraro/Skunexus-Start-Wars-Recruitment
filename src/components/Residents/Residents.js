@@ -16,7 +16,7 @@ function Residents() {
         <div className='App'>
             <Grid
                 data={{
-                    header: ['name'],
+                    header: [{name: 'name'}],
                     values: data?.map(promise => promise.value) || [],
                 }}
             />

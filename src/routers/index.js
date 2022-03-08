@@ -15,7 +15,11 @@ const Router = () => {
             <BrowserRouter>
                 <Switch>
                     <Route exact path='/' component={Planets}/>
-                    <Route exact path='/planets' component={Planets}/>
+                    <Route exact path='/planets'
+                           render={(props) => <Planets {...props} headers={[{name: "residents", type: "array"}, {
+                               name: "films",
+                               type: "array"
+                           }]}/>}/>
                     <Route exact path='/planet/:id' component={Planet}/>
                     <Route exact path='/films' component={Films}/>
                     <Route exact path='/residents' component={Residents}/>

@@ -9,7 +9,8 @@ import {Button} from "reactstrap";
 import {EditPlanetModal} from "./EditPlanetModal";
 
 
-function Planets() {
+function Planets({headers = []}) {
+    console.log(headers);
     const [page, setPage] = useState(1)
     const [planet, setPlanet] = useState(undefined)
     const {data} = usePlanetsQuery(page, setPage);
@@ -25,15 +26,15 @@ function Planets() {
             <Grid
                 data={{
                     header: [
-                        'name',
-                        'rotation_period',
-                        'orbital_period',
-                        'diameter',
-                        'climate',
-                        'gravity',
-                        'terrain',
-                        'surface_water',
-                        'population'
+                        {name:'name',},
+                        {name:'rotation_period', type: "number"},
+                        {name:'orbital_period', type: "number"},
+                        {name:'diameter', type: "number"},
+                        {name:'climate'},
+                        {name:'gravity'},
+                        {name:'terrain'},
+                        {name:'surface_water', type: "number"},
+                        ...headers,
                     ],
                     values: data?.results || [],
                     actions: [

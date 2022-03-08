@@ -17,9 +17,9 @@ function Films() {
             <Grid
                 data={{
                     header: [
-                        'title',
-                        'director',
-                        'url',
+                        {name:'title'},
+                        {name:'director'},
+                        {name:'url'}
                     ],
                     values: query.data?.map(promise => promise.value),
                 }}
