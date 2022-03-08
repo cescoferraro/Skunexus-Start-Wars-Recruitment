@@ -23,7 +23,7 @@ function Residents() {
       />
       <Button
         onClick={() => {
-          history.push("/");
+          history.push("/planets");
         }}
       >
         Back to Planets

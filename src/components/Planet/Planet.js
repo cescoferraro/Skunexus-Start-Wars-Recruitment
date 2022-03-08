@@ -15,7 +15,7 @@ const Planet = () => {
     <div>
       <h2>{data.name}</h2>
       <h4>Climate: {data.climate}</h4>
-      <Button onClick={() => history.push("/")}>Back to Planets</Button>
+      <Button onClick={() => history.push("/planets")}>Back to Planets</Button>
     </div>
   );
 };

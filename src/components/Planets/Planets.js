@@ -4,7 +4,7 @@ import { useState } from "react";
 import { usePlanetsQuery } from "./usePlanetsQuery";
 import { changePageFN } from "./changePageFN";
 import { Button } from "reactstrap";
-import EditPlanetModal from "./EditPlanetModal";
+import EditPlanetModal from "./EditPlanetModal/EditPlanetModal";
 import PropTypes from "prop-types";
 
 function Planets({ headers = [] }) {
@@ -15,25 +15,26 @@ function Planets({ headers = [] }) {
   const changePage = changePageFN(page, setPage, data?.count / 10);
   const history = useHistory();
   const onClose = () => setPlanet(undefined);
+  let header = [
+    { name: "name" },
+    { name: "rotation_period", type: "number" },
+    { name: "orbital_period", type: "number" },
+    { name: "diameter", type: "number" },
+    { name: "climate" },
+    { name: "gravity" },
+    { name: "terrain" },
+    { name: "surface_water", type: "number" },
+    ...headers,
+  ];
   return (
     <div className="App">
       <h1>Star Wars Planets</h1>
       {planet !== undefined && (
-        <EditPlanetModal planet={planet} onClose={onClose} />
+        <EditPlanetModal planet={planet} onClose={onClose} header={header} />
       )}
       <Grid
         data={{
-          header: [
-            { name: "name" },
-            { name: "rotation_period", type: "number" },
-            { name: "orbital_period", type: "number" },
-            { name: "diameter", type: "number" },
-            { name: "climate" },
-            { name: "gravity" },
-            { name: "terrain" },
-            { name: "surface_water", type: "number" },
-            ...headers,
-          ],
+          header,
           values: data?.results || [],
           actions: [
             {

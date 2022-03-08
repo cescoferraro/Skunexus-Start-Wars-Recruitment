@@ -1,6 +1,12 @@
 import { Button, Table } from "reactstrap";
 import PropTypes from "prop-types";
 
+function numericStyles(type) {
+  return {
+    textAlign: type === "number" ? "right" : undefined,
+  };
+}
+
 function Grid({ data: { header = [], values = [], actions = [] } }) {
   const hasActions = !!actions.length;
   return (
@@ -9,7 +15,7 @@ function Grid({ data: { header = [], values = [], actions = [] } }) {
         <tr>
           {header.map(({ name, type }) => {
             return (
-              <th key={`${name}-header`}>
+              <th key={`${name}-header`} style={numericStyles(type)}>
                 {name} {type === "number" ? "(number)" : "(string)"}
               </th>
             );
@@ -24,12 +30,7 @@ function Grid({ data: { header = [], values = [], actions = [] } }) {
               {header.map(({ name, type = "string" }) => {
                 let rowElement = row[name];
                 return (
-                  <td
-                    key={name}
-                    style={{
-                      textAlign: type === "number" ? "right" : undefined,
-                    }}
-                  >
+                  <td key={name} style={numericStyles(type)}>
                     {type === "array" ? rowElement.length : rowElement}
                   </td>
                 );
