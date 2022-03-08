@@ -17,7 +17,14 @@ function Residents() {
       <h1>Star Wars Residents from {location.state?.name}</h1>
       <Grid
         data={{
-          header: [{ name: "name" }],
+          header: [
+            { name: "name" },
+            { name: "skin_color" },
+            { name: "gender" },
+            { name: "eye_color" },
+            { name: "mass", type: "number" },
+            { name: "height", type: "number" },
+          ],
           values: data?.map((promise) => promise.value) || [],
         }}
       />

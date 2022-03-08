@@ -9,10 +9,12 @@ export function allActions(history, setPlanet) {
       },
     },
     {
-      label: "Go to Residents",
+      label: `Go to Residents`,
       show: (row) => row.residents.length > 0,
       action: (row) => {
-        console.log(`redirect to grid with ${row.residents.length} Residents`);
+        let residents = row.residents;
+        console.log(`redirect to grid with ${residents.length} Residents`);
+        console.log(residents);
         history.push("/residents", {
           residents: row.residents,
           name: row.name,
