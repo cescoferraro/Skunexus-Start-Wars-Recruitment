@@ -4,6 +4,7 @@ import Grid from '../Grid';
 import {useHistory, useLocation} from "react-router-dom";
 import {useFetchMultipleQuery} from "../hooks/useFetchMultipleQuery";
 import {useRedirectToPlanetsIfNoStateEffect} from "../hooks/useRedirectToPlanetsIfNoStateEffect";
+import {Button} from "reactstrap";
 
 
 function Residents() {
@@ -15,20 +16,17 @@ function Residents() {
         <div className='App'>
             <Grid
                 data={{
-                    header: [
-                        'name',
-                    ],
+                    header: ['name'],
                     values: data?.map(promise => promise.value) || [],
-                    actions: [
-                        {
-                            label: 'Go to Planets',
-                            action: () => {
-                                history.push("/")
-                            }
-                        },
-                    ]
                 }}
             />
+            <Button
+                onClick={() => {
+                    history.push("/")
+                }}
+            >
+                Back to Planets
+            </Button>
         </div>
     );
 }

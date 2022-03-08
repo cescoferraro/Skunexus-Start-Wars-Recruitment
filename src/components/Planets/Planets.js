@@ -5,15 +5,23 @@ import {useHistory} from "react-router-dom";
 import {useState} from "react";
 import {usePlanetsQuery} from "./usePlanetsQuery";
 import {changePageFN} from "./changePageFN";
+import {Button} from "reactstrap";
+import {EditPlanetModal} from "./EditPlanetModal";
 
 
 function Planets() {
     const [page, setPage] = useState(1)
+    const [planet, setPlanet] = useState(undefined)
     const {data} = usePlanetsQuery(page, setPage);
     const changePage = changePageFN(page, setPage, data?.count / 10);
     const history = useHistory()
+    const onClose = () => setPlanet(undefined);
     return (
         <div className='App'>
+            {
+                planet !== undefined &&
+                <EditPlanetModal planet={planet} onClose={onClose}/>
+            }
             <Grid
                 data={{
                     header: [
@@ -31,16 +39,25 @@ function Planets() {
                     actions: [
                         {
                             label: 'Go to Films',
+                            show: row=>row.films.length > 0,
                             action: (row) => {
                                 console.log(`redirect to grid with ${row.films.length} Films`)
-                                history.push("/films", {films: row.films,name: row.name})
+                                history.push("/films", {films: row.films, name: row.name})
                             }
                         },
                         {
                             label: 'Go to Residents',
+                            show: (row)=>row.residents.length > 0,
                             action: (row) => {
                                 console.log(`redirect to grid with ${row.residents.length} Residents`)
-                                history.push("/residents",{residents: row.residents, name: row.name})
+                                history.push("/residents", {residents: row.residents, name: row.name})
+                            }
+                        },
+                        {
+                            label: 'Edit Planet',
+                            action: (row) => {
+                                setPlanet(row)
+
                             }
                         },
                         {
@@ -55,9 +72,9 @@ function Planets() {
                 }}
             />
             <div>
-                <button onClick={changePage("previous")}>{"<<"}</button>
+                <Button onClick={changePage("previous")}>{"<<"}</Button>
                 {page}
-                <button onClick={changePage("next")}>{">>"}</button>
+                <Button onClick={changePage("next")}>{">>"}</Button>
             </div>
         </div>
     );

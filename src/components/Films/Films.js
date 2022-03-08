@@ -4,6 +4,7 @@ import Grid from '../Grid';
 import {useHistory, useLocation} from "react-router-dom";
 import {useFetchMultipleQuery} from "../hooks/useFetchMultipleQuery";
 import {useRedirectToPlanetsIfNoStateEffect} from "../hooks/useRedirectToPlanetsIfNoStateEffect";
+import {Button} from "reactstrap";
 
 function Films() {
     const history = useHistory()
@@ -21,17 +22,15 @@ function Films() {
                         'url',
                     ],
                     values: query.data?.map(promise => promise.value),
-                    actions: [
-                        {
-                            label: 'Go to Planets',
-                            action: () => {
-                                console.log(history);
-                                history.push("/")
-                            }
-                        },
-                    ]
                 }}
             />
+            <Button
+                onClick={() => {
+                    history.push("/")
+                }}
+            >
+                Back to Planets
+            </Button>
         </div>
     );
 }

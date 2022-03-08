@@ -8,7 +8,6 @@ export function usePlanetsQuery(id) {
 
 export const Planet = () => {
     let {id} = useParams();
-    console.log(id);
     let {isLoading, data} = usePlanetsQuery(id);
     const history = useHistory()
     return isLoading ? (
