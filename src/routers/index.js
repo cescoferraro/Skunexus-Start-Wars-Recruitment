@@ -23,7 +23,7 @@ const Router = () => {
   }, []);
   return (
     <QueryClientProvider client={queryClient}>
-      <BrowserRouter>
+      <BrowserRouter basename={process.env.PUBLIC_URL}>
         <Switch>
           <Route exact path="/" component={Planets} />
           <Route
