@@ -11,7 +11,7 @@ function Grid({data: {header = [], values = [], actions = []}}) {
       </thead>
       <tbody>
         {values.map((row, index) => (
-          <tr key={row.url}>
+          <tr key={row.url} style={{height: 100}}>
             {header.map((colName) => <td key={colName}>{row[colName]}</td>)}
             {!!actions.length &&
               <td className='gridActions'>
