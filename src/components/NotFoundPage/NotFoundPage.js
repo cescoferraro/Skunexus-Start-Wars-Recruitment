@@ -1,14 +1,13 @@
-import Bg from '../../assets/space.jpg';
-import './NotFoundPage.css';
-
+import Bg from "../../assets/space.jpg";
+import "./NotFoundPage.css";
 
 const NotFoundPage = () => {
   return (
-    <div className="not-found-page" style={{backgroundImage: `url(${Bg})`}}>
+    <div className="not-found-page" style={{ backgroundImage: `url(${Bg})` }}>
       <h1>404</h1>
       <p>Page not found</p>
     </div>
   );
-}
+};
 
 export default NotFoundPage;

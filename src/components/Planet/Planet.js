@@ -1,27 +1,22 @@
-import {useHistory, useParams} from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 import React from "react";
-import {useQuery} from "react-query";
+import { usePlanetsQuery } from "./usePlanetsQuery";
+import { Button } from "reactstrap";
 
-export function usePlanetsQuery(id) {
-    return useQuery(['planet', id], () => fetch(`https://swapi.dev/api/planets/${id}`).then((res) => res.json()))
-}
-
-export const Planet = () => {
-    let {id} = useParams();
-    let {isLoading, data} = usePlanetsQuery(id);
-    const history = useHistory()
-    return isLoading ? (
-        <div>
-            <h2>loading planet</h2>
-        </div>
-
-    ) : (
-        <div>
-            <h2>{data.name}</h2>
-            <h4>Climate: {data.climate}</h4>
-            <button onClick={()=>history.push("/")}>
-                Back to Planets
-            </button>
-        </div>
-    );
-}
+const Planet = () => {
+  const { id } = useParams();
+  const { isLoading, data } = usePlanetsQuery(id);
+  const history = useHistory();
+  return isLoading ? (
+    <div>
+      <h2>loading planet</h2>
+    </div>
+  ) : (
+    <div>
+      <h2>{data.name}</h2>
+      <h4>Climate: {data.climate}</h4>
+      <Button onClick={() => history.push("/")}>Back to Planets</Button>
+    </div>
+  );
+};
+export default Planet;

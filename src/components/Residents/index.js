@@ -1,3 +1,3 @@
-import Component from './Residents';
+import Component from "./Residents";
 
 export default Component;

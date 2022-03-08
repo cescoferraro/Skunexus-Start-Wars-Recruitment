@@ -11,7 +11,8 @@
   box-sizing: border-box;
 }
 
-.not-found-page h1, .not-found-page p {
+.not-found-page h1,
+.not-found-page p {
   color: #fff;
   margin: 0;
 }

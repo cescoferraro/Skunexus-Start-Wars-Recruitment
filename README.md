@@ -6,6 +6,7 @@ Fork/Copy starting application from [https://github.com/MaciejDonarski/Skunexus-
 At the start you have a simple application which displays planets from Star Wars in grid. Your task is to upgrade it respecting the principles from Tech Stack, Must-have (Good to have and paying attention also)
 
 ## The Task
+
 1. Replace dummy data with dynamic data from [https://swapi.dev/api/planets/](https://swapi.dev/api/planets/)
 1. Planets grid have two buttons - follow the instructions in console.logs
 1. Create another action which will redirect to Planet details page
@@ -15,7 +16,7 @@ At the start you have a simple application which displays planets from Star Wars
    1. orbital_period - number
    1. diameter - number
    1. climate - text
-   1. gravity  - text
+   1. gravity - text
    1. terrain - dropdown
    1. surface_water - number
 1. Update Grid`**` component so that the display of actions is conditional
@@ -28,28 +29,33 @@ At the start you have a simple application which displays planets from Star Wars
 `** remember that Grid component should stay reusable. This component isn't only for Planets`
 
 ## Mockups
+
 No mockups but would be great if you make that app pretty :)
 
 ## Tech stack
-* react (CRA starter)
-* react-router
-* redux
+
+- react (CRA starter)
+- react-router
+- redux
 
 ## Must-have
-* React & Redux
-* PropTypes
-* Reactstrap
-* Usage of react-router for multiple pages
+
+- React & Redux
+- PropTypes
+- Reactstrap
+- Usage of react-router for multiple pages
 
 ## Good to have
-* using function components (with hooks) instead of class components
+
+- using function components (with hooks) instead of class components
 
 ## Paying attention to
-* How you split code for components
-* Reusability of the components
-* Code repetitions and reusability
-* Working in accordance with good practices in general
+
+- How you split code for components
+- Reusability of the components
+- Code repetitions and reusability
+- Working in accordance with good practices in general
 
 ## Delivery
-Delivery the application by link to public repo or zip file
 
+Delivery the application by link to public repo or zip file

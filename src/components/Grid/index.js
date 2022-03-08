@@ -1,3 +1,3 @@
-import Component from './Grid';
+import Component from "./Grid";
 
 export default Component;
