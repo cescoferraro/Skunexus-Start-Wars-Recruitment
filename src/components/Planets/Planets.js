@@ -2,82 +2,46 @@ import Grid from "../Grid";
 import { useHistory } from "react-router-dom";
 import { useState } from "react";
 import { usePlanetsQuery } from "./usePlanetsQuery";
-import { changePageFN } from "./changePageFN";
-import { Button } from "reactstrap";
+import { Button, ButtonGroup, ButtonToolbar } from "reactstrap";
 import EditPlanetModal from "./EditPlanetModal/EditPlanetModal";
 import PropTypes from "prop-types";
+import { allHeaders } from "./allHeaders";
+import { allActions } from "./allActions";
 
 function Planets({ headers = [] }) {
+  const history = useHistory();
   const [page, setPage] = useState(1);
   const [planet, setPlanet] = useState(undefined);
-  const { data } = usePlanetsQuery(page, setPage);
-  const changePage = changePageFN(page, setPage, data?.count / 10);
-  const history = useHistory();
-  const onClose = () => setPlanet(undefined);
-  const header = [
-    { name: "name" },
-    { name: "rotation_period", type: "number" },
-    { name: "orbital_period", type: "number" },
-    { name: "diameter", type: "number" },
-    { name: "climate" },
-    { name: "gravity" },
-    { name: "terrain" },
-    { name: "surface_water", type: "number" },
-    ...headers,
-  ];
+  const { data, isFetching } = usePlanetsQuery(page, setPage);
+  const header = allHeaders(headers);
+  const actions = allActions(history, setPlanet);
   return (
     <div className="App">
       <h1>Star Wars Planets</h1>
       {planet !== undefined && (
-        <EditPlanetModal planet={planet} onClose={onClose} header={header} />
+        <EditPlanetModal
+          planet={planet}
+          onClose={() => setPlanet(undefined)}
+          header={header}
+        />
       )}
-      <Grid
-        data={{
-          header,
-          values: data?.results || [],
-          actions: [
-            {
-              label: "Go to Films",
-              show: (row) => row.films.length > 0,
-              action: (row) => {
-                console.log(`redirect to grid with ${row.films.length} Films`);
-                history.push("/films", { films: row.films, name: row.name });
-              },
-            },
-            {
-              label: "Go to Residents",
-              show: (row) => row.residents.length > 0,
-              action: (row) => {
-                console.log(
-                  `redirect to grid with ${row.residents.length} Residents`
-                );
-                history.push("/residents", {
-                  residents: row.residents,
-                  name: row.name,
-                });
-              },
-            },
-            {
-              label: "Edit Planet",
-              action: (row) => {
-                setPlanet(row);
-              },
-            },
-            {
-              label: "Go to Planet",
-              action: (row) => {
-                const split = row.url.split("/");
-                const id = split[split.length - 2];
-                history.push(`/planet/${id}`);
-              },
-            },
-          ],
-        }}
-      />
+      {isFetching ? (
+        <h2>Loading...</h2>
+      ) : (
+        <Grid data={{ header, values: data?.results || [], actions }} />
+      )}
       <div>
-        <Button onClick={changePage("previous")}>{"<<"}</Button>
-        {page}
-        <Button onClick={changePage("next")}>{">>"}</Button>
+        <ButtonToolbar>
+          <ButtonGroup>
+            {Array.from({ length: data?.count / 10 }, (_, i) => i + 1).map(
+              (p) => (
+                <Button key={p} onClick={() => setPage(p)}>
+                  {p}
+                </Button>
+              )
+            )}
+          </ButtonGroup>
+        </ButtonToolbar>
       </div>
     </div>
   );

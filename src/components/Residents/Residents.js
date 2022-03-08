@@ -21,13 +21,7 @@ function Residents() {
           values: data?.map((promise) => promise.value) || [],
         }}
       />
-      <Button
-        onClick={() => {
-          history.push("/planets");
-        }}
-      >
-        Back to Planets
-      </Button>
+      <Button onClick={() => history.push("/")}>Back to Planets</Button>
     </div>
   );
 }

@@ -6,6 +6,7 @@ import NotFoundPage from "../components/NotFoundPage";
 import { QueryClient, QueryClientProvider } from "react-query";
 import Planets from "../components/Planets";
 import Planet from "../components/Planet";
+import { ReactQueryDevtools } from "react-query/devtools";
 
 const queryClient = new QueryClient({
   refetchOnMount: false,
@@ -13,6 +14,8 @@ const queryClient = new QueryClient({
   refetchInterval: 1000000,
   refetchOnWindowFocus: false,
   refetchIntervalInBackground: 1000000,
+  staleTime: 1000 * 60 * 60 * 24 * 365,
+  cacheTime: 1000 * 60 * 60 * 24 * 365,
 });
 
 const Router = () => {
@@ -21,6 +24,7 @@ const Router = () => {
   }, []);
   return (
     <QueryClientProvider client={queryClient}>
+      <ReactQueryDevtools initialIsOpen={false} />
       <BrowserRouter>
         <Switch>
           <Route exact path="/" component={Planets} />
