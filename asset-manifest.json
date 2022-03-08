@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/startwars/static/css/main.fa76aaf5.chunk.css",
-    "main.js": "/startwars/static/js/main.57d52289.chunk.js",
-    "main.js.map": "/startwars/static/js/main.57d52289.chunk.js.map",
+    "main.js": "/startwars/static/js/main.6767e599.chunk.js",
+    "main.js.map": "/startwars/static/js/main.6767e599.chunk.js.map",
     "runtime-main.js": "/startwars/static/js/runtime-main.31059580.js",
     "runtime-main.js.map": "/startwars/static/js/runtime-main.31059580.js.map",
     "static/css/2.0a9ec390.chunk.css": "/startwars/static/css/2.0a9ec390.chunk.css",
@@ -21,6 +21,6 @@
     "static/css/2.0a9ec390.chunk.css",
     "static/js/2.5f42c906.chunk.js",
     "static/css/main.fa76aaf5.chunk.css",
-    "static/js/main.57d52289.chunk.js"
+    "static/js/main.6767e599.chunk.js"
   ]
 }
