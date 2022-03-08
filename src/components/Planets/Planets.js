@@ -2,24 +2,10 @@ import './Planets.css';
 
 import Grid from '../Grid';
 import {useHistory} from "react-router-dom";
-import {useQuery} from "react-query";
 import {useState} from "react";
+import {usePlanetsQuery} from "./usePlanetsQuery";
+import {changePageFN} from "./changePageFN";
 
-const fetchProjects = (page = 0) => fetch('https://swapi.dev/api/planets?page=' + page).then((res) => res.json())
-
-
-function usePlanetsQuery(page) {
-    return useQuery(['planets', page], () => fetchProjects(page), {keepPreviousData: true})
-}
-
-function changePageFN(page, setPage, pages) {
-    return mode => () => {
-        let number = mode === "next" ? page + 1 : page - 1;
-        if (number > 0 && number <= pages) {
-            setPage(number)
-        }
-    };
-}
 
 function Planets() {
     const [page, setPage] = useState(1)
@@ -47,16 +33,24 @@ function Planets() {
                             label: 'Go to Films',
                             action: (row) => {
                                 console.log(`redirect to grid with ${row.films.length} Films`)
-                                history.replace("/films", {films: row.films,name: row.name})
+                                history.push("/films", {films: row.films,name: row.name})
                             }
                         },
                         {
                             label: 'Go to Residents',
                             action: (row) => {
                                 console.log(`redirect to grid with ${row.residents.length} Residents`)
-                                history.replace("/residents",{residents: row.residents,name: row.name})
+                                history.push("/residents",{residents: row.residents, name: row.name})
                             }
                         },
+                        {
+                            label: 'Go to Planet',
+                            action: (row) => {
+                                const split = row.url.split("/");
+                                const id = split[split.length - 2];
+                                history.push(`/planet/${id}`)
+                            }
+                        }
                     ]
                 }}
             />
